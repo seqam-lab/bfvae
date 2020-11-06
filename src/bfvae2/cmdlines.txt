@@ -1,0 +1,56 @@
+
+
+CUDA_VISIBLE_DEVICES=4 nohup 
+
+
+#### oval_dsprites; gamma = 35.0, etaS = 0.1, etaH = 0.1, z_dim = 10, lr_VAE = 1e-4, lr_D = 1e-4, rseed = 11
+
+python main.py --dset_dir ../../new_vae/beta_vae/data --dataset oval_dsprites --run_id 0 --rseed 11 --num_workers 0 --batch_size 64 --max_iter 3e5 --lr_VAE 1e-4 --beta1_VAE 0.9 --beta2_VAE 0.999 --lr_D 1e-4 --beta1_D 0.5 --beta2_D 0.9 --z_dim 10 --gamma 35.0 --etaS 0.1 --etaH 0.1 --print_iter 50 --ckpt_save_iter 5000 --output_save_iter 2000 --eval_metrics --eval_metrics_iter 5000 --ckpt_load_iter 0 --viz_on --viz_ll_iter 10 --viz_la_iter 50 --viz_port 8097
+
+
+
+
+
+
+
+
+###################################################################################################
+
+#
+# test
+#
+
+
+#### oval_dsprites; gamma = 35.0, etaS = 0.1, etaH = 0.1, z_dim = 10, lr_VAE = 1e-4, lr_D = 1e-4, rseed = 11
+
+python main_test.py --dset_dir ../../new_vae/beta_vae/data --dataset oval_dsprites --gamma 35.0 --etaS 0.1 --etaH 0.1 --z_dim 10 --run_id 0 --rseed 11 --lr_VAE 1e-4 --lr_D 1e-4 --ckpt_load_iter 300000 --num_recon 5 --num_synth 5 --num_trvsl 10 --losses --num_eval_metric1 10 --num_eval_metric2 10 --num_workers 0 --batch_size 64
+
+
+
+
+
+###################################################################################################
+
+#
+# just save latent vectors
+#
+
+#### oval_dsprites; gamma = 35.0, etaS = 0.1, etaH = 0.1, z_dim = 10, lr_VAE = 1e-4, lr_D = 1e-4, rseed = 11
+
+python main_save_z.py --dset_dir ../../new_vae/beta_vae/data --dataset oval_dsprites --gamma 35.0 --etaS 0.1 --etaH 0.1 --z_dim 10 --run_id 0 --rseed 11 --lr_VAE 1e-4 --lr_D 1e-4 --ckpt_load_iter 300000 --num_workers 0 --batch_size 64
+
+
+
+
+
+
+###################################################################################################
+
+#
+# refined latent traversal
+#
+
+#### oval_dsprites; gamma = 35.0, etaS = 0.1, etaH = 0.1, z_dim = 10, lr_VAE = 1e-4, lr_D = 1e-4, rseed = 11
+
+python main_refined_traverse.py --dset_dir ../../new_vae/beta_vae/data --dataset oval_dsprites --gamma 35.0 --etaS 0.1 --etaH 0.1 --z_dim 10 --run_id 0 --rseed 11 --lr_VAE 1e-4 --lr_D 1e-4 --ckpt_load_iter 300000 --num_workers 0 --batch_size 64
+
